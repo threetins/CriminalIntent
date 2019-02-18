@@ -48,8 +48,8 @@ public class CrimeListFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mDateTextView;
 
-        public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_crime, parent, false));
+        public CrimeHolder(LayoutInflater inflater, ViewGroup parent, int viewType) {
+            super(inflater.inflate(viewType, parent, false));
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
@@ -76,17 +76,25 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
 
+        @Override
+        public int getItemViewType(int position) {
+            if (mCrimes.get(position).isRequiresPolice()) {
+                return R.layout.list_item_crime_police;
+            } else {
+                return R.layout.list_item_crime;
+            }
+        }
+
         @NonNull
         @Override
         public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new CrimeHolder(layoutInflater, parent);
+            return new CrimeHolder(layoutInflater, parent, viewtype);
         }
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
             Crime crime = mCrimes.get(position);
-//            holder.getItemViewType(position);
             holder.bind(crime);
         }
 
