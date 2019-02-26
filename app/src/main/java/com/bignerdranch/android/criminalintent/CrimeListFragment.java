@@ -19,6 +19,9 @@ import java.util.List;
 
 public class CrimeListFragment extends Fragment {
 
+    private int clickedCrimePosition;
+    private static final String KEY_CLICKED_CRIME_POSITION = "clicked_crime_position";
+
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
 
@@ -31,6 +34,9 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        if (savedInstanceState != null) {
+            clickedCrimePosition = savedInstanceState.getInt(KEY_CLICKED_CRIME_POSITION);
+        }
         updateUI();
         return view;
     }
@@ -51,6 +57,7 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(clickedCrimePosition);
         }
 
     }
@@ -124,5 +131,11 @@ public class CrimeListFragment extends Fragment {
         public int getItemCount() {
             return mCrimes.size();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(KEY_CLICKED_CRIME_POSITION, clickedCrimePosition);
     }
 }
