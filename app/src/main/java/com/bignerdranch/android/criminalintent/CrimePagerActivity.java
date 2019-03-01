@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +21,8 @@ public class CrimePagerActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
+    private Button mFirstButton;
+    private Button mLastButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,41 @@ public class CrimePagerActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                mFirstButton.setEnabled(i != 0);
+                mLastButton.setEnabled(i != mCrimes.size() - 1);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
+        mFirstButton = (Button) findViewById(R.id.first_button);
+        mFirstButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+
+        mLastButton = (Button) findViewById(R.id.last_button);
+        mLastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mCrimes.size() - 1);
+            }
+        });
+
     }
 
     public static Intent newIntent(Context packageContext, UUID crimeId) {

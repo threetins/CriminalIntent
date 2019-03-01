@@ -5,4 +5,6 @@
     <string name="crime_details_label">Detail</string>
     <string name="crime_solved_label">Solved</string>
     <string name="crime_contact_police">Contact Police</string>
+    <string name="crime_jump_to_first">Jump to first</string>
+    <string name="crime_jump_to_last">Jump to last</string>
 </resources>

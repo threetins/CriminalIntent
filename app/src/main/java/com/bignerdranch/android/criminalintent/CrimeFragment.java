@@ -22,6 +22,8 @@ public class CrimeFragment extends Fragment {
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
+    private Button mFirst;
+    private Button mLast;
     private CheckBox mSolvedCheckBox;
 
     public static CrimeFragment newInstance(UUID crimeId) {
@@ -36,7 +38,6 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mCrime = new Crime();
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
