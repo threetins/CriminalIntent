@@ -10,7 +10,7 @@ public class Crime {
 
     private UUID mId;
     private String mTitle;
-    private Date mDate; // DateFormat: getDateInstance & applyPattern
+    private Date mDate; // DateFormat: getDateInstance & applyPatter
     private boolean mSolved;
     private boolean mRequiresPolice;
 
