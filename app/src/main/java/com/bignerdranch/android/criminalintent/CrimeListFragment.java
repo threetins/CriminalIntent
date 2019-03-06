@@ -79,7 +79,7 @@ public class CrimeListFragment extends Fragment {
 
         public void bind(Crime crime) {
             SimpleDateFormat sdf = new SimpleDateFormat();
-            sdf.applyPattern("EEEE, MMM d, YYYY");
+            sdf.applyPattern("EEEE, MMM d, YYYY: h:mm");
 
             mCrime = crime;
 

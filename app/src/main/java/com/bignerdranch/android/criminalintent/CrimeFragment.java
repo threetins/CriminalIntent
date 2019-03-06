@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -132,7 +133,12 @@ public class CrimeFragment extends Fragment {
     }
 
     private void updateDate() {
-        mDateButton.setText(mCrime.getDate().toString());
-        mTimeButton.setText(mCrime.getDate().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("EEEE, MMM d, YYYY");
+        mDateButton.setText(sdf.format(mCrime.getDate()));
+        sdf.applyPattern("h:mm");
+        mTimeButton.setText(sdf.format(mCrime.getDate()));
+//        mDateButton.setText(mCrime.getDate().toString());
+//        mTimeButton.setText(mCrime.getDate().toString());
     }
 }
