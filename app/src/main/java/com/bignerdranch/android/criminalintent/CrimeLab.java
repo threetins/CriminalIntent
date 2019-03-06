@@ -12,8 +12,8 @@ import java.util.UUID;
 public class CrimeLab {
 
     private static CrimeLab sCrimeLab;
-//    private List<Crime> mCrimes;
-    private Map<UUID, Crime> mCrimes;
+    private List<Crime> mCrimes; // LinkedHashMap
+//    private Map<UUID, Crime> mCrimes;
 
     public static CrimeLab get(Context context) {
         if (sCrimeLab == null) {
@@ -24,7 +24,8 @@ public class CrimeLab {
     }
 
     private CrimeLab (Context context) {
-        mCrimes = new LinkedHashMap<>();
+//        mCrimes = new LinkedHashMap<>();
+        mCrimes = new ArrayList<>(); // LinkedHashMap
 //        for (int i = 0; i < 100; i++) {
 //            Crime crime = new Crime();
 //            crime.setTitle("Crime #" + i);
@@ -35,21 +36,22 @@ public class CrimeLab {
     }
 
     public void addCrime(Crime c) {
-        mCrimes.put(c.getId(), c);
+//        mCrimes.put(c.getId(), c);
+        mCrimes.add(c); // LinkedHashMap
     }
 
     public List<Crime> getCrimes() {
-//        return mCrimes;
-        return new ArrayList<>(mCrimes.values());
+        return mCrimes; // LinkedHashMap
+//        return new ArrayList<>(mCrimes.values());
     }
 
     public Crime getCrime(UUID id) {
-//        for (Crime crime : mCrimes) { // to study
-//            if (crime.getId().equals(id)) {
-//                return crime;
-//            }
-//        }
-//        return null;
-        return mCrimes.get(id);
+        for (Crime crime : mCrimes) { // to study // LinkedHashMap
+            if (crime.getId().equals(id)) {
+                return crime;
+            }
+        }
+        return null;
+//        return mCrimes.get(id);
     }
 }
