@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
 
@@ -80,7 +82,9 @@ public class CrimeListFragment extends Fragment {
     private void updateUI() {
 
         CrimeLab crimeLab = CrimeLab.get(getActivity());
-        List<Crime> crimes = crimeLab.getCrimes();
+//        List<Crime> crimes = crimeLab.getCrimes();
+        Map<UUID, Crime> crimes = crimeLab.getCrimes(); // LinkedHashMap
+
 
         if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
@@ -127,9 +131,13 @@ public class CrimeListFragment extends Fragment {
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> { // to study <>
 
-        private List<Crime> mCrimes;
+//        private List<Crime> mCrimes;
+private Map<UUID, Crime> mCrimes; // LinkedHashMap
 
-        public CrimeAdapter(List<Crime> crimes) {
+//        public CrimeAdapter(List<Crime> crimes) {
+//            mCrimes = crimes;
+//        }
+        public CrimeAdapter(Map<UUID, Crime> crimes) { // LinkedHashMap
             mCrimes = crimes;
         }
 

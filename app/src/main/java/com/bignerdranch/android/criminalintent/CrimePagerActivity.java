@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class CrimePagerActivity extends AppCompatActivity {
@@ -20,7 +21,8 @@ public class CrimePagerActivity extends AppCompatActivity {
 
 
     private ViewPager mViewPager;
-    private List<Crime> mCrimes;
+//    private List<Crime> mCrimes;
+private Map<UUID, Crime> mCrimes; // LinkedHashMap
     private Button mFirstButton;
     private Button mLastButton;
 
@@ -47,12 +49,14 @@ public class CrimePagerActivity extends AppCompatActivity {
             }
         });
 
-        for (int i =0; i < mCrimes.size(); i++) {
-            if (mCrimes.get(i).getId().equals(crimeId)) {
-                mViewPager.setCurrentItem(i);
-                break;
-            }
-        }
+
+//        mViewPager.setCurrentItem(0);
+//        for (int i =0; i < mCrimes.size(); i++) {
+//            if (mCrimes.get(i).getId().equals(crimeId)) {
+//                mViewPager.setCurrentItem(i);
+//                break;
+//            }
+//        }
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
