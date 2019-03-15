@@ -146,6 +146,11 @@ public class CrimeFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_crime:
+                UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+                CrimeLab crimeLab = CrimeLab.get(getActivity());
+                mCrime = crimeLab.getCrime(crimeId);
+                crimeLab.deleteCrime(mCrime);
+                getActivity().finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
