@@ -12,6 +12,7 @@ public class Crime {
     private String mTitle;
     private Date mDate; // DateFormat: getDateInstance & applyPatter
     private boolean mSolved;
+    private String mSuspect;
     private boolean mRequiresPolice;
 
     public Crime() {
@@ -51,6 +52,14 @@ public class Crime {
 
     public void setDate(Date date) {
         mDate = date;
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 
     public boolean isSolved() {

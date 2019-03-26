@@ -18,6 +18,7 @@ import java.util.UUID;
 
 import static com.bignerdranch.android.criminalintent.database.CrimeDBSchema.CrimeTable.Cols.DATE;
 import static com.bignerdranch.android.criminalintent.database.CrimeDBSchema.CrimeTable.Cols.SOLVED;
+import static com.bignerdranch.android.criminalintent.database.CrimeDBSchema.CrimeTable.Cols.SUSPECT;
 import static com.bignerdranch.android.criminalintent.database.CrimeDBSchema.CrimeTable.Cols.TITLE;
 import static com.bignerdranch.android.criminalintent.database.CrimeDBSchema.CrimeTable.NAME;
 
@@ -141,7 +142,8 @@ public class CrimeLab {
         values.put(CrimeDBSchema.CrimeTable.Cols.UUID, crime.getId().toString());
         values.put(TITLE, crime.getTitle());
         values.put(DATE, crime.getDate().getTime());
-        values.put(SOLVED, crime.isSolved());
+        values.put(SOLVED, crime.isSolved() ? 1 : 0);
+        values.put(SUSPECT, crime.getSuspect());
 
         return values;
 
